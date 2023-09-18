@@ -1,11 +1,15 @@
 <div class="container my-5">
-  <h3 class="text-center mb-3">Register New Account</h3>
+  <h3 class="text-center mb-5">Create A New Account</h3>
   <!-- <h4>{{registerForm.get('name')?.errors | json}}</h4> -->
 
-  <form action="" [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+  <div class="alert alert-danger" *ngIf="apiError">
+    <p class="mb-0">{{ apiError }}</p>
+  </div>
+
+  <form class="w-75 m-auto" action="" [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
     <div class="form-group mb-3">
       <label for="name">Name</label>
-      <input id="name" type="text" class="form-control mb-1" formControlName="name">
+      <input id="name" type="text" class="form-control my-1" formControlName="name">
       <div class="alert alert-danger" *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
         <p *ngIf="registerForm.get('name')?.getError('required')" class="mb-0">name is required</p>
         <p *ngIf="registerForm.get('name')?.getError('minlength')" class="mb-0">name min length is 3</p>
@@ -14,7 +18,7 @@
     </div>
     <div class="form-group mb-3">
       <label for="email">Email</label>
-      <input id="email" type="email" class="form-control mb-1" formControlName="email">
+      <input id="email" type="email" class="form-control my-1" formControlName="email">
       <div class="alert alert-danger" *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
         <p *ngIf="registerForm.get('email')?.getError('required')" class="mb-0">Email is required</p>
         <p *ngIf="registerForm.get('email')?.getError('email')" class="mb-0">Email Invalid</p>
@@ -22,7 +26,7 @@
     </div>
     <div class="form-group mb-3">
       <label for="password">Password</label>
-      <input id="password" type="password" class="form-control mb-1" formControlName="password">
+      <input id="password" type="password" class="form-control my-1" formControlName="password">
       <div class="alert alert-danger" *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
         <p *ngIf="registerForm.get('password')?.getError('required')" class="mb-0">Password is required</p>
         <p *ngIf="registerForm.get('password')?.getError('pattern')" class="mb-0">Password Invalid</p>
@@ -30,7 +34,7 @@
     </div>
     <div class="form-group mb-3">
       <label for="repassword">Confirm Password</label>
-      <input id="repassword" type="password" class="form-control mb-1" formControlName="rePassword">
+      <input id="repassword" type="password" class="form-control my-1" formControlName="rePassword">
       <div class="alert alert-danger" *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">
         <p *ngIf="registerForm.get('rePassword')?.getError('required')" class="mb-0">Email is required</p>
         <p *ngIf="registerForm.get('rePassword')?.getError('pattern')" class="mb-0">Password Invalid</p>
@@ -38,13 +42,20 @@
     </div>
     <div class="form-group mb-3">
       <label for="phone">Phone</label>
-      <input id="phone" type="text" class="form-control mb-1" formControlName="phone">
+      <input id="phone" type="text" class="form-control my-1" formControlName="phone">
       <div class="alert alert-danger" *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
         <p *ngIf="registerForm.get('phone')?.getError('required')" class="mb-0">Phone Number is required</p>
-        <p *ngIf="registerForm.get('phone')?.getError('min')" class="mb-0">Phone Number must be at least 10 numbers</p>
-        <p *ngIf="registerForm.get('phone')?.getError('max')" class="mb-0">Phone Number must be at max 12 numbers</p>
+        <p *ngIf="registerForm.get('phone')?.getError('minlength')" class="mb-0">Phone Number must be at least 10 numbers</p>
+        <p *ngIf="registerForm.get('phone')?.getError('maxlength')" class="mb-0">Phone Number must be at max 12 numbers</p>
       </div>
     </div>
-    <button [disabled]="registerForm.invalid" class="btn btn-success ms-auto d-block" type="submit"><i class="fa fa-check me-2"></i>Register</button>
+    <button [disabled]="registerForm.invalid" class="btn btn-success ms-auto d-block" type="submit">
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+      <span *ngIf="!isLoading">
+        <i class="fa fa-check me-2"></i>
+        register
+      </span>
+    </button>
+
   </form>
 </div>

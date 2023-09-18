@@ -9,18 +9,28 @@ import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 
+import { Injectable } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     NavbarComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
+    NotFoundComponent,
+    HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
