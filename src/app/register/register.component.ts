@@ -12,6 +12,7 @@ export class RegisterComponent {
 
   isLoading:boolean = false;
   apiError:string = '';
+  isNotValidForm:boolean = false;
 
   constructor (private _authService: AuthService, private _router: Router) {}
 
@@ -34,10 +35,13 @@ export class RegisterComponent {
           this._router.navigate(['/login']);
         },
         error: (err) => {
+          this.isLoading = false;
           // console.log(err);
           this.apiError = err.error.message;
         }
       });
+    } else {
+      this.isNotValidForm = true;
     }
   }
 
