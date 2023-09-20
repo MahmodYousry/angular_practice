@@ -22,5 +22,9 @@ export class NavbarComponent {
     if (this._authService.userData != null) { this.isLoggedIn = true; } else { this.isLoggedIn = false; }
   }
 
+  logOut() {
+    this._authService.logOut();
+  }
+
 
 }

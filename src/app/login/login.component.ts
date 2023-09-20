@@ -14,7 +14,9 @@ export class LoginComponent {
   apiError:string = '';
   isNotValidForm:boolean = false;
 
-  constructor (private _authService: AuthService, private _router: Router) {}
+  constructor (private _authService: AuthService, private _router: Router) {
+    _authService.authCheck();
+  }
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),

@@ -14,7 +14,9 @@ export class RegisterComponent {
   apiError:string = '';
   isNotValidForm:boolean = false;
 
-  constructor (private _authService: AuthService, private _router: Router) {}
+  constructor (private _authService: AuthService, private _router: Router) {
+    _authService.authCheck();
+  }
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]),

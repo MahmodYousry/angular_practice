@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
@@ -12,9 +13,10 @@ export class AuthService {
 
   apiUrl:string = 'https://ecommerce.routemisr.com';
 
-  userData: BehaviorSubject<any> = new BehaviorSubject("");
+  userData: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private _http:HttpClient) {
+
+  constructor(private _http:HttpClient, private _router: Router) {
     if (localStorage.getItem('userToken')) {
       this.getUserData();
     }
@@ -24,7 +26,6 @@ export class AuthService {
     let encodedToken = JSON.stringify(localStorage.getItem('userToken'));
     // to decode the token
     let encoded = jwtDecode(encodedToken);
-    console.log(encoded);
     this.userData.next(encoded);
   }
 
@@ -36,8 +37,16 @@ export class AuthService {
     return this._http.post(`${this.apiUrl}/api/v1/auth/signin`, data);
   }
 
-  logout() {
+  logOut() {
     localStorage.removeItem('userToken');
+    this.userData.next(null);
+    this._router.navigate(['/login']);
+  }
+
+  authCheck() {
+    if (localStorage.getItem('userToken') != null) {
+      this._router.navigate(['/home']);
+    }
   }
 
 }

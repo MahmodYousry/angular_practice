@@ -10,21 +10,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" routerLink="home" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item" *ngIf="!isLoggedIn">
-          <a class="nav-link" routerLink="register">Register</a>
+          <a class="nav-link" routerLink="register" routerLinkActive="active">Register</a>
         </li>
         <li class="nav-item" *ngIf="!isLoggedIn">
-          <a class="nav-link" routerLink="login">Login</a>
+          <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link">Logout</a>
+        <li (click)="logOut()" class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link cursor-pointer">Logout</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,7 +34,7 @@
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><a class="dropdown-item" href="#">buton</a></li>
           </ul>
         </li>
 
