@@ -19,6 +19,7 @@ export class CategoriesComponent implements OnInit {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
+    margin: 20,
     navText: ['', ''],
     responsive: {
       0: {

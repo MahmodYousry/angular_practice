@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../core/services/products.service';
 import { Product } from '../core/interfaces/product';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CartService } from '../shared/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +22,7 @@ export class ProductDetailsComponent {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['<i class="fa fa-arrow-left my-2 mx-3"></i>', '<i class="fa fa-arrow-right my-2 mx-3"></i>'],
     responsive: {
       0: {
         items: 1
@@ -30,7 +31,7 @@ export class ProductDetailsComponent {
     nav: true
   }
 
-  constructor (private _activatedRoute: ActivatedRoute, private _productsService: ProductsService) {
+  constructor (private _activatedRoute: ActivatedRoute, private _productsService: ProductsService, private _cartService:CartService) {
     this._activatedRoute.paramMap.subscribe((res:any) => {
       console.log(res);
       this.productId = res.params.id;
@@ -43,6 +44,12 @@ export class ProductDetailsComponent {
       }
     });
 
+  }
+
+  addToCart(id:string) {
+    this._cartService.addProductToCart(id).subscribe({
+      next: (res) => console.log(res)
+    });
   }
 
 

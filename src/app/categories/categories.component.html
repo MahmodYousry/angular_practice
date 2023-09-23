@@ -2,8 +2,8 @@
 
   <ng-container *ngFor="let slide of allCategories">
     <ng-template carouselSlide>
-      <img height="300" [src]="slide.image">
-      <h3>{{ slide.name }}</h3>
+      <img height="300" [src]="slide.image" class="mb-3 rounded">
+      <h3 class="h6 text-center">{{ slide.name }}</h3>
     </ng-template>
   </ng-container>
 

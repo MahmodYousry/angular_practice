@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +23,10 @@ import { FeaturedProductesComponent } from './featured-productes/featured-produc
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MainSliderComponent } from './main-slider/main-slider.component';
+import { SliderWrapperComponent } from './slider-wrapper/slider-wrapper.component';
+import { TrimPipe } from './trim.pipe';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     FeaturedProductesComponent,
     ProductItemComponent,
     ProductDetailsComponent,
+    MainSliderComponent,
+    SliderWrapperComponent,
+    TrimPipe,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CarouselModule
+    CarouselModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

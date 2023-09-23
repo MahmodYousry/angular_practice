@@ -25,6 +25,7 @@ const routes: Routes = [
   {path: 'brands', canActivate: [authGuard], component: BrandsComponent, title: 'Brands'},
   {path: 'categories', canActivate: [authGuard], component: CategoriesComponent, title: 'Categories'},
   {path: 'productDetails/:id', canActivate: [authGuard], component: ProductDetailsComponent, title: 'Product Details'},
+  {path: 'setting', canActivate: [authGuard], loadChildren: () => import('./setting/setting.module').then((x) => x.SettingModule) },
 
   // Login & Register System
   {path: 'register', component: RegisterComponent, title: 'Sign Up'},

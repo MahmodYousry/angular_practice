@@ -10,6 +10,7 @@ import { Product } from '../core/interfaces/product';
 export class FeaturedProductesComponent implements OnInit {
 
   allProducts:Product[] = [];
+  searchKey: string = '';
 
   constructor (private _productsService:ProductsService) {
 
