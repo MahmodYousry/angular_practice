@@ -28,4 +28,23 @@ export class CartService {
     });
   }
 
+  updateProductCount(count: number, id:string) :Observable<any> {
+    return this._http.put(`${this.apiUrl}/api/v1/cart/${id}`, {
+      count: `${count}`
+    }, {
+      headers: {
+        token: `${localStorage.getItem('userToken')}`
+      }
+    });
+  }
+
+  removeProduct(id:string) :Observable<any> {
+    return this._http.delete(`${this.apiUrl}/api/v1/cart/${id}`,
+    {
+      headers: {
+        token: `${localStorage.getItem('userToken')}`
+      }
+    });
+  }
+
 }

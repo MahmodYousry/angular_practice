@@ -27,6 +27,7 @@ import { MainSliderComponent } from './main-slider/main-slider.component';
 import { SliderWrapperComponent } from './slider-wrapper/slider-wrapper.component';
 import { TrimPipe } from './trim.pipe';
 import { SearchPipe } from './search.pipe';
+import { FilterProductsPipe } from './cart/filter-products.pipe';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { SearchPipe } from './search.pipe';
     SliderWrapperComponent,
     TrimPipe,
     SearchPipe,
+    FilterProductsPipe,
   ],
   imports: [
     BrowserModule,
