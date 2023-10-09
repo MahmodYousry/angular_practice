@@ -25,7 +25,7 @@
           <p class="text-main">{{ item.description }}</p>
           <div class="d-flex align-items-center">
             <p class="text-main mb-0">{{ item.price | currency : "EGP "}}</p>
-            <button class="btn text-danger px-0 ms-3"><i class="fa fa-regular fa-trash-can"></i> Remove</button>
+            <button class="btn text-danger px-0 ms-3" (click)="removeFromWishList(item.id)"><i class="fa fa-regular fa-trash-can"></i> Remove</button>
           </div>
         </div>
       </div>

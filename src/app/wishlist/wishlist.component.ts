@@ -28,4 +28,21 @@ export class WishlistComponent implements OnInit {
     });
   }
 
+  removeFromWishList(id: string) {
+    this._wishlistservice.removeFromWishList(id).subscribe({
+      next: res => console.log(res),
+      error: err => console.warn(err),
+      complete: () => {
+        this._wishlistservice.getWishList().subscribe({
+          next: (res) => {
+            this.wishlist = res.data
+            this.wishListCount = res.count
+            console.log(res);
+          }
+        });
+      },
+
+    });
+  }
+
 }
