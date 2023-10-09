@@ -1,0 +1,13 @@
+<div class="product p-2 pb-4 mb-3 rounded border" data-toggle="tooltip" data-placement="bottom" title="{{ product.title }}">
+  <a [routerLink]="['/productDetails', product.id]">
+    <img class="w-100 mb-3" src="{{ product.imageCover }}" alt="">
+    <p class="text-main">{{ product.category.name }}</p>
+    <h2 class="h6">{{ product.title | trim:2 }}</h2>
+    <div class="d-flex justify-content-between">
+      <span>{{ product.price }} EGP</span>
+      <div><i class="fa fa-star me-2"></i>{{ product.ratingsAverage }}</div>
+    </div>
+  </a>
+  <button class="btn bg-main text-white mb-1 w-100 font-sm" (click)="addToWishlist(product.id)" ><i class="fa fa-heart"></i> Add To Wishlist</button>
+  <button class="btn bg-main w-100 text-light font-sm" (click)="addToCart(product.id)"><i class="fa fa-plus me-2"></i>Add To Cart</button>
+</div>
