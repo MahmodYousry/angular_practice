@@ -13,8 +13,12 @@
           <a class="nav-link" aria-current="page" routerLink="home" routerLinkActive="active">Home</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="cart" routerLinkActive="active">Cart</a>
+        <li class="nav-item position-relative">
+          <a class="nav-link cursor-pointer" routerLink="/cart" routerLinkActive="active">
+            Cart
+           <i class="fa fa-shopping-cart text-main me-2"></i>
+           <div class="badge bg-main position-absolute top-0 end-0">{{ numOfCartItems }}</div>
+          </a>
         </li>
 
         <li class="nav-item">
@@ -31,27 +35,17 @@
           <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
         </li>
 
-        <li (click)="logOut()" class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link cursor-pointer">Logout</a>
-        </li>
 
-        <li class="nav-item position-relative" *ngIf="isLoggedIn">
-          <a class="nav-link cursor-pointer" routerLink="/cart">
-           <i class="fa fa-shopping-cart text-main me-2"></i>
-           <div class="badge bg-main position-absolute top-0 end-0">{{ numOfCartItems }}</div>
-          </a>
-        </li>
-
-        <li class="nav-item dropdown">
+        <li *ngIf="isLoggedIn" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            User Options
+            <span>{{ userName | trim:1}}</span>
           </a>
           <ul class="dropdown-menu menu-dark">
             <li><a class="dropdown-item" routerLink="cart">Cart</a></li>
             <li><a class="dropdown-item" routerLink="setting/mobile">Settins On Mobile</a></li>
             <li><a class="dropdown-item" routerLink="setting">Settings</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">buton</a></li>
+            <li><a class="dropdown-item" (click)="logOut()">Logout</a></li>
           </ul>
         </li>
       </ul>

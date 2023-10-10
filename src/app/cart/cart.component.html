@@ -1,13 +1,13 @@
 <div class="container my-5">
   <h2 class="text-center mb-4 text-uppercase fw-bold">Cart Details</h2>
   <div class="bg-main-light p-4 rounded border shadow-sm" *ngIf="cartDetails?.data">
-    <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <h2>Cart Details</h2>
-      <button class="btn bg-main text-white">
-        <a [routerLink]="['/checkout/', cartDetails.data._id]">
-          <i class="fa fa-arrow-right me-2"></i>Continue To Pay
-        </a>
-      </button>
+
+      <a *ngIf="cartDetails.numOfCartItems > 0" [routerLink]="['/checkout/', cartDetails.data._id]" class="btn bg-main text-white border">
+        <i class="fa fa-arrow-right me-2"></i>Continue To Pay
+      </a>
+
     </div>
     <div class="d-flex p-3 justify-content-between">
       <div class="total-items">

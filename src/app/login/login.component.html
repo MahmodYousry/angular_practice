@@ -26,6 +26,9 @@
         <p *ngIf="loginForm.get('password')?.getError('pattern')" class="mb-0">Password Invalid</p>
       </div>
     </div>
+
+    <a class="text-white d-block mb-3 text-capitalize" routerLink="/forgotPassword">forgot your password ?</a>
+
     <button class="btn btn-success d-block w-100" type="submit" [disabled]="loginForm.invalid">
       <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
       <span *ngIf="!isLoading">

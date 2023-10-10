@@ -15,7 +15,6 @@ export class AuthService {
 
   userData: BehaviorSubject<any> = new BehaviorSubject(null);
 
-
   constructor(private _http:HttpClient, private _router: Router) {
     if (localStorage.getItem('userToken')) {
       this.getUserData();
@@ -37,16 +36,33 @@ export class AuthService {
     return this._http.post(`${this.apiUrl}/api/v1/auth/signin`, data);
   }
 
-  logOut() {
-    localStorage.removeItem('userToken');
-    this.userData.next(null);
-    this._router.navigate(['/login']);
-  }
-
   authCheck() {
     if (localStorage.getItem('userToken') != null) {
       this._router.navigate(['/home']);
     }
+  }
+
+  // forgot pass
+  forgotPass(data: any): Observable<any> {
+    return this._http.post(`${this.apiUrl}/api/v1/auth/forgotPasswords`, data)
+  }
+
+  verifyCode(data: any): Observable<any> {
+    return this._http.post(`${this.apiUrl}/api/v1/auth/verifyResetCode`,{
+      "resetCode":`${data}`
+    })
+  }
+
+  resetPass(data: any): Observable<any> {
+    return this._http.put(`${this.apiUrl}/api/v1/auth/resetPassword`,data)
+  }
+
+  changePassword(data: any) : Observable<any> {
+    return this._http.put(`${this.apiUrl}/api/v1/users/changeMyPassword`,data)
+  }
+
+  changeUserData(data: any) : Observable<any> {
+    return this._http.put(`${this.apiUrl}/api/v1/users/updateMe/`,data )
   }
 
 }

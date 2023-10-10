@@ -7,6 +7,7 @@ import { Cart } from '../shared/services/cart';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
 export class CartComponent implements OnInit {
 
     cartDetails: Cart = {} as Cart;

@@ -1,18 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/core/services/auth.service';
 import { CartService } from '../shared/services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
   numOfCartItems:number = 0;
   isLoggedIn:boolean = false;
 
-  constructor (private _authService: AuthService, private _cartService: CartService) {
+  userName: string = "";
+
+  constructor (private _authService: AuthService, private _cartService: CartService, private _router: Router) { }
+
+  ngOnInit(): void {
+
+    // checks for user data that comes from api
     this._authService.userData.subscribe((res) => {
       if (this._authService.userData.getValue()) {
         this.isLoggedIn = true;
@@ -27,12 +34,25 @@ export class NavbarComponent {
       this.numOfCartItems = res;
     });
 
-    // if there is logged in user assign variable to tell us
-    if (this._authService.userData != null) { this.isLoggedIn = true; } else { this.isLoggedIn = false; }
+    this._authService.userData.subscribe(res => {
+      if (localStorage.getItem('userToken')) {
+        this.userName = res.name
+      } else {
+        this.userName = "Options"
+      }
+
+      console.log(this.userName);
+    })
+
+    console.log('isLoggedIn = ', this.isLoggedIn);
+
   }
 
   logOut() {
-    this._authService.logOut();
+    localStorage.removeItem('userToken');
+    this._authService.userData.next(null);
+    this.isLoggedIn = false;
+    this._router.navigate(['/login']);
   }
 
 

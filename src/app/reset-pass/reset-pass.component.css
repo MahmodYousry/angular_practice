@@ -1,0 +1,84 @@
+.control {
+  padding: .75rem 1.2rem;
+  border: 1px solid;
+  border-color: transparent;
+  outline: none;
+  transition: all .3s;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+.control:focus  {
+  border-color: var(--main-color);
+  background-color: white;
+  overflow: visible;
+}
+.control::placeholder  {
+  transition: all .5s;
+}
+.control:focus::placeholder  {
+  opacity: 0;
+}
+.placeHolder {
+  padding: 0 4px;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all .3s;
+  z-index: 1;
+  color: #aaa;
+  opacity: 0;
+}
+
+.control:focus + .placeHolder {
+  opacity: 1;
+  top: 0;
+  transform: translateY(-55%);
+  color: var(--main-color);
+  font-size: 1.1rem;
+  background-color: white;
+  z-index: 3;
+}
+
+.fa-circle-xmark {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  right: .7rem;
+}
+.fa-circle-xmark p {
+  transition: all .3s;
+  position: relative;
+  text-align: center;
+}
+.fa-circle-xmark p i {
+  font-size: 2rem;
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 12px);
+  transform: translateX(-50%);
+}
+.alert {
+  font-size: .7rem;
+  letter-spacing: 2px;
+  width: 21rem;
+}
+
+@media (width <= 500px) {
+  .alert {
+    width: 14rem;
+    font-size: .5rem;
+    line-height: 1.5;
+  }
+}
+@media (1380px <= width <= 1500px) {
+  .alert {
+    width: 15rem;
+    font-size: .5rem;
+    line-height: 1.5;
+  }
+
+}

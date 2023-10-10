@@ -1,0 +1,28 @@
+<div class="container my-5">
+  <h3 class="text-center mb-3 text-uppercase">We Have Sent an email to you with Verification Code enter it here</h3>
+
+  <!-- Api Errors -->
+  <!-- <div class="alert alert-danger" *ngIf="apiError">
+    <p class="mb-0">{{ apiError }}</p>
+  </div> -->
+
+  <form class="w-50 m-auto bg-dark text-light p-4 rounded-3" action="" [formGroup]="formVerificationCode" (ngSubmit)="sendResetCode(formVerificationCode)">
+    <div class="form-group mb-3">
+      <label for="text">Verification Code</label>
+      <input id="text" type="text" class="form-control my-2" formControlName="resetCode">
+      <!-- errors -->
+      <div class="alert alert-danger" *ngIf="formVerificationCode.get('resetCode')?.errors && (formVerificationCode.get('resetCode')?.touched)">
+        <p *ngIf="formVerificationCode.get('resetCode')?.getError('required')" class="mb-0">Code is required</p>
+        <p *ngIf="formVerificationCode.get('resetCode')?.getError('maxlength')" class="mb-0">Max Length is 6</p>
+      </div>
+    </div>
+
+    <button class="btn btn-success d-block w-100" type="submit" [disabled]="formVerificationCode.invalid">
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+      <span *ngIf="!isLoading">
+        <i class="fa fa-check me-2"></i> Send
+      </span>
+    </button>
+
+  </form>
+</div>
